@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+   
+      <div class="temp-styling">  
+  <h1> <%= collection %></h1>
+ <a href="/items/create"> <button type="submit">Add document/ITEM</button> </a>
+  
+ 
+    <% categoryData.forEach((obj) => { %>
+      
+        <div class="item-card"> 
+        <p><a href="/item/<%=collection %>/<%= obj._id %>/">  <%= obj.name %> </a></p>
+
+     <p> <a><%= obj.description %> </a></p>
+     <p><a> <%= obj.category %> </a></p> 
+     </div>
+<% }) %>
+
+</div>
+   
+  </body>
+</html>
+
+ 

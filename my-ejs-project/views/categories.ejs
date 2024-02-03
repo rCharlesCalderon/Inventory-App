@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <header> 
+      <ul>
+        <li><a href="/"><%= navBar.home %> </a></li>
+        <li><a href="/categories"> <%= navBar.categories %></a> </li>
+          <li><a href="/items"> <%= navBar.items %> </a></li>
+      
+      </ul>
+    </header>
+    <div class="category-container">
+        <div class="add-categories">
+            All Categories <a href="/categories/create"><button class="add-category">+</button></a>
+        
+        
+        
+        </div>
+    <% collections.forEach((obj) => { %>
+    <p><a href="/categories/<%= obj.name %>"> <%= obj.name %></a></p>
+<% }) %>
+
+
+    </div>
+   
+  </body>
+</html>
