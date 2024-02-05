@@ -2,7 +2,8 @@ var express = require("express");
 var router = express.Router();
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
-const {ObjectId} = require("mongodb")
+const {ObjectId} = require("mongodb");
+const { func, object } = require("prop-types");
 
 mongoose.connect(
   "mongodb+srv://Rubcal123:Rubcal123@inventory.smc01ik.mongodb.net/?retryWrites=true&w=majority"
@@ -81,11 +82,11 @@ router.get("/items", async function(req,res){
     let documents = await (await mongoose.connection.useDb("Categories").collection(itemsData[i].name).find({}).toArray())
     
     documentData.push(...documents)
-    console.log(documentData)
   }
   res.render("items",{documentData})
   
 })
+
 //GET ITEM OF CATEGORY
 //Lists the item
 //go through and find the obj, u have the item id but dont have the specific category id :(
@@ -93,15 +94,21 @@ router.get("/item/:collection/:id",async function (req, res) {
   const collection = req.params.collection
   const id = req.params.id
   const categoryData = await mongoose.connection.useDb("Categories").collection(collection).findOne({_id:new ObjectId(id)})
-  function func1() {
-    console.log("I am in the click handler 1!");
-  }
-  res.render("item", { categoryData, clickHandler: func1() });
+
+  res.render("item", { categoryData, id,collection});
 })
+router.post('/deleteItem',async function(req,res){
+const documentId = req.query.id;
+const collectionName = req.query.collection;
+  await mongoose.connection.useDb("Categories").collection(collectionName).deleteOne({
+    _id:new ObjectId(documentId)
+  })
+  res.redirect(`/categories/${collectionName}`)
+})
+
 //display items
 router.get('/items/create',async function(req,res){
   const categories = await mongoose.connection.useDb('Categories').listCollections()
-  console.log(categories)
   res.render("createItem",{categories})
 })
 router.post("/createItem",async function(req,res){
@@ -116,4 +123,24 @@ router.post("/createItem",async function(req,res){
   })
   res.redirect(`/categories/${req.body.categoryNames}`);
 });
+
+
+router.get("/updateItem/:collection/:id", async function (req, res) {
+ const collection = req.params.collection;
+ const id = req.params.id;
+ let data = await mongoose.connection.useDb('Categories').collection(collection).find({
+  _id: new ObjectId(id)
+ }).toArray()
+ const collectionList = await mongoose.connection.useDb('Categories').listCollections()
+ console.log(data)
+
+  res.render("updateItem",{data,collectionList});
+});
+
+router.post('/update',async function(req,res){
+ const documentId = req.query.id;
+ const collectionName = req.query.collection;
+ let data = await mongoose.connection.useDb("Categories").collection(collectionName)
+
+})
 module.exports = router;

@@ -6,13 +6,20 @@
   </head>
   <body>
 
-       
-     <button>EDIT BUTTON</button>
- <button onclick='<%= clickHandler %>'> TRASH</button>
+      <a href="/updateItem/<%=collection%>/<%=id %>"><button>EDIT BUTTON</button></a>
    
+     
+ 
+   <form action="/deleteItem?collection=<%=collection%>&id=<%=id%>" method="post">
+  <button class="test" type="submit" >TRASH</button>
+</form>
 
     <h1><%=  categoryData.name     %></h1>
       
    
   </body>
+ <script>
+
+ </script>
+
 </html>

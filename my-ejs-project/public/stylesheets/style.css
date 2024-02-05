@@ -1,11 +1,22 @@
 *{
   margin: 0px;
   padding: 0px;
+  box-sizing: border-box;
+  
 }
 
+@font-face {
+  font-family: league;
+  src: url(/fonts/Archivo_SemiCondensed-Black.ttf);
+}
+a:link,a:visited {
+   text-decoration: none;
+   color: white;
+}
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background: grey;
+  background: rgb(78,28,72);
+background: linear-gradient(90deg, rgba(78,28,72,1) 0%, rgba(94,37,87,1) 72%, rgba(85,27,78,1) 100%);
   height: 100vh;
 }
 
@@ -15,12 +26,30 @@ a {
 
 header{
   display: flex;
-  border: 1px red solid;
-  width: 100%;
-  height: 50px;
   align-items: center;
+  width: 100%;
+  height: 70px;
+  justify-content: space-between;
+  border-radius: 35px;
+ padding-left: 20px;
+ padding-right: 20px;
+ border: 1px black solid;
 }
 
+.navbar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  width: 100%;
+  color: white;
+  font-size: 22px;
+  font-family: league;
+}
+img{
+  
+  height: 50px;
+}
 ul{
   list-style: none;
   display: flex;
@@ -39,13 +68,48 @@ ul{
   height: 100%;
   width: 100%;
   flex-direction: column;
-  border: 1px green solid;
 }
 
 .item-card{
   height: 200px;
   width: 300px;
-  border: 1px red solid;
+}
+
+.home{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px 130px 0px 130px;
+  width: 100vw;
+  height: 100vh;
 }
 
 
+.league-title {
+  color: white;
+  font-size: 100px;
+  text-align: center;
+  width: 100%;
+  letter-spacing: 2px;
+  font-family: league;
+
+}
+.image-container{
+  position: relative;
+  height: 75%;
+  width: 100%;
+}
+
+h2{
+  position: absolute;
+  width: 100%;
+  height: 5%;
+  text-align: center;
+  color: white;
+  font-family: league;
+}
+.teemo-img{
+ width: 100%;
+ height: 100%;
+ border-radius: 35px;
+}
