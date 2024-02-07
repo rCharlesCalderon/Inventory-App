@@ -3,118 +3,82 @@ var router = express.Router();
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 const {ObjectId} = require("mongodb");
+const itemSchema = require("../controller/itemSchema.js")
 
+mongoose.connect("mongodb+srv://Rubcal123:Rubcal123@inventory.smc01ik.mongodb.net/?retryWrites=true&w=majority");
+const db = mongoose.connection.useDb("Categories")
 
-mongoose.connect(
-  "mongodb+srv://Rubcal123:Rubcal123@inventory.smc01ik.mongodb.net/?retryWrites=true&w=majority"
-);
-/////HOLY FUCCCCCCCCCCCCCKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
-
-const itemSchema = new Schema({
-  name:String,
-  description: String,
-  category: String,
-  image: String,
-  price:Number ,
-  stock: Number,
-});
 /* GET home page. */
 router.get("/", function (req, res, next) {
   res.render("index");
 });
 
 
-// GET Categories
-//lists categories
+//Lists Categories
 router.get("/categories", async function (req, res) {
-  const collectionData = await mongoose.connection
-    .useDb("Categories")
-    .listCollections();
-
-  
-
+  const collectionData = await db.listCollections();
   res.render("categories", { collections: collectionData});
 });
+
 //Route to Create form page
 router.get("/categories/create", async function (req, res) {
   res.render("categoriesCreate");
 });
+
 //Make collection in database from form
 router.post("/createCategories", async function (req, res) {
   const categoryName = req.body.name;
-  const categoryData = await mongoose.connection
-    .useDb("Categories")
-    .listCollections();
+  const categoryData = await db.listCollections();
   let findData = categoryData.find((name) => name.name === categoryName);
-  //IMAGE STUFF?
   if(!findData){
-
-    const category = await mongoose.connection.useDb("Categories").createCollection(categoryName);
-     
-       
+  const category = await db.createCollection(categoryName);
   }
-
   res.redirect(`/categories/${categoryName}`)
 });
-//GET single category
-//lists everything related to something like scifi
+
+//List all documents of a collection
 router.get("/categories/:id", async function (req, res) {
   let id = req.params.id;
-  const categoryData = await mongoose.connection
-    .useDb("Categories")
-    .collection(id)
-    .find()
-    .toArray();
-    console.log(categoryData)
-    console.log(id)
-  //do some filtering for the id later and pass it
+  const categoryData = await db.collection(id).find().toArray();
   res.render("category", { categoryData, collection: id });
 });
 
-
-//NOAH PROBLEM
+//Lists all items in Items tab
 router.get("/items", async function(req,res){
-  const itemsData = await mongoose.connection.useDb("Categories").listCollections()
-  console.log(itemsData)
+  const itemsData = await db.listCollections()
   let documentData = []
   for(let i = 0; i < itemsData.length; i++){
-    let documents = await (await mongoose.connection.useDb("Categories").collection(itemsData[i].name).find({}).toArray())
-    
+    let documents = await db.collection(itemsData[i].name).find({}).toArray()
     documentData.push(...documents)
   }
   res.render("items",{documentData})
-  
 })
 
-//GET ITEM OF CATEGORY
-//Lists the item
-//go through and find the obj, u have the item id but dont have the specific category id :(
+//Display an Item
 router.get("/item/:collection/:id",async function (req, res) {
   const collection = req.params.collection
   const id = req.params.id
-  const categoryData = await mongoose.connection.useDb("Categories").collection(collection).findOne({_id:new ObjectId(id)})
-
+  const categoryData = await db.collection(collection).findOne({_id:new ObjectId(id)})
   res.render("item", { categoryData, id,collection});
 })
+//Delete an Document/Item
 router.post('/deleteItem',async function(req,res){
 const documentId = req.query.id;
 const collectionName = req.query.collection;
-  await mongoose.connection.useDb("Categories").collection(collectionName).deleteOne({
-    _id:new ObjectId(documentId)
-  })
+  await db.collection(collectionName).deleteOne({_id:new ObjectId(documentId)})
   res.redirect(`/categories/${collectionName}`)
 })
 
-//display items
+//Create Item/Document for a collection
 router.get('/items/create',async function(req,res){
-  const categories = await mongoose.connection.useDb('Categories').listCollections()
+  //passing in categories for dropdown menu
+  const categories = await db.listCollections()
   res.render("createItem",{categories})
 })
+//Store item in MongoDB
 router.post("/createItem",async function(req,res){
   //CREATE SCHEMA OR USE IT HERE 
- 
- const newItem = mongoose.connection.useDb("Categories").model(req.body.categoryNames, itemSchema,req.body.categoryNames);
-
+ const newItem = db.model(req.body.categoryNames, itemSchema,req.body.categoryNames);
  const newItemInstance = new newItem({
    name: req.body.itemName,
    description: req.body.itemDescription,
@@ -123,29 +87,23 @@ router.post("/createItem",async function(req,res){
    price: req.body.price,
    stock: req.body.stock,
  });
-
- // Save the newly created item to the database
  await newItemInstance.save();
   res.redirect(`/categories/${req.body.categoryNames}`);
 });
 
-
+//Update document
 router.get("/updateItem/:collection/:id", async function (req, res) {
  const collection = req.params.collection;
  const id = req.params.id;
- let data = await mongoose.connection.useDb('Categories').collection(collection).find({
-  _id: new ObjectId(id)
- }).toArray()
- const collectionList = await mongoose.connection.useDb('Categories').listCollections()
- console.log(data)
-
-  res.render("updateItem",{data,collectionList});
+ let data = await db.collection(collection).find({_id: new ObjectId(id)}).toArray()
+ const collectionList = await db.listCollections()
+ res.render("updateItem",{data,collectionList});
 });
 
 router.post('/update',async function(req,res){
  const documentId = req.query.id;
  const collectionName = req.query.collection;
- let data = await mongoose.connection.useDb("Categories").collection(collectionName)
+ let data = await db.collection(collectionName)
 
 })
 module.exports = router;
