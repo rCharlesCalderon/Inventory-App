@@ -2,16 +2,19 @@
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
-  
 }
 
 @font-face {
   font-family: league;
-  src: url(/fonts/Archivo_SemiCondensed-Black.ttf);
+  src: url(/fonts/BeaufortforLOL-Bold.otf);
 }
 a:link,a:visited {
    text-decoration: none;
    color: white;
+}
+
+a:hover{
+  color: #C89B3C
 }
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -20,9 +23,7 @@ background: linear-gradient(90deg, rgba(78,28,72,1) 0%, rgba(94,37,87,1) 72%, rg
   height: 100vh;
 }
 
-a {
-  color: #00B7FF;
-}
+
 
 header{
   display: flex;
@@ -32,8 +33,9 @@ header{
   justify-content: space-between;
   border-radius: 35px;
  padding-left: 20px;
- padding-right: 20px;
- border: 1px black solid;
+ padding-right: 8px;
+ margin-top: 15px;
+   background: rgba(100, 100, 100, 0.38);
 }
 
 .navbar{
@@ -42,13 +44,10 @@ header{
   align-items: center;
   gap: 30px;
   width: 100%;
-  color: white;
+  color: whitesmoke;
   font-size: 22px;
   font-family: league;
-}
-img{
-  
-  height: 50px;
+ text-align: center;
 }
 ul{
   list-style: none;
@@ -56,11 +55,7 @@ ul{
   gap: 10px;
 }
 
-.add-categories {
-  border: 4px green solid;
-  height: 5%;
-  width: 100%;
-}
+
 
 .temp-styling{
   display: flex;
@@ -79,11 +74,13 @@ ul{
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 15px 130px 0px 130px;
+  padding: 0px 180px 0px 180px;
   width: 100vw;
   height: 100vh;
 }
-
+img {
+  height: 55px;
+}
 
 .league-title {
   color: white;
@@ -107,9 +104,116 @@ h2{
   text-align: center;
   color: white;
   font-family: league;
+  
+}
+
+.my-account{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  width: 13%;
+  height: 60px;
+  border-radius: 35px;
+  background: rgb(200,155,60);
+background: linear-gradient(90deg, rgba(200,155,60,1) 0%, rgba(120,90,40,1) 100%);
+font-size: 19px;
+font-family: league;
+letter-spacing: 1px;
+color: white;
 }
 .teemo-img{
  width: 100%;
  height: 100%;
  border-radius: 35px;
+}
+
+
+.categories-container {
+  display: flex;
+ flex-direction: column;
+  height: 100%;
+  width: 100%;
+  padding: 10px;
+  gap: 10px;
+}
+
+.add-category {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10%;
+  height: 5%;
+  border-radius: 35px;
+  font-family: league;
+  font-size: 16px;
+  color: white;
+  gap: 3px  ;
+
+ background: linear-gradient(90deg, rgba(0,90,130,1) 0%, rgba(10,200,185,1) 100%);
+}
+
+
+
+.rp-img {
+  height: 28px;
+
+}
+.collectionCard{
+  display: flex;
+ align-items: center;
+  font-size: 20px;
+  font-family: league;
+  color: white;
+  width: 20%;
+  height: 8%;
+}
+.categories{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 15px;
+}
+
+.category-container{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  gap: 5px;
+}
+.category-navbar{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 8%;
+  font-size: 26px;
+  color: white;
+  font-family: league;
+  gap: 5px;
+}
+
+.category-nav-img{
+  height: 30px;
+}
+
+.item-categories{
+  display: flex;
+  height: 100%;
+  gap: 15px;
+}
+
+.item{
+  display: flex;
+  flex-direction: column;
+  height: 40%;
+  width: 15%;
+  border: 1px red solid;
+  border-radius: 25px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.item-img{
+  border-radius: 25px 25px 0px 0px;
+  height: 60%;
 }

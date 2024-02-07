@@ -3,31 +3,24 @@ var router = express.Router();
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 const {ObjectId} = require("mongodb");
-const { func, object } = require("prop-types");
+
 
 mongoose.connect(
   "mongodb+srv://Rubcal123:Rubcal123@inventory.smc01ik.mongodb.net/?retryWrites=true&w=majority"
 );
 /////HOLY FUCCCCCCCCCCCCCKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
- const categorySchema = new Schema({
-        name: String,
-        description: String,
-        category: String,
-        stock: Number,
-        url: String,
-        price: Number,
-      })
 
-//NAVBAR
-const navBar = {
-  home: "Home",
-  categories: "Categories",
-  items: "Items",
-};
-
+const itemSchema = new Schema({
+  name:String,
+  description: String,
+  category: String,
+  image: String,
+  price:Number ,
+  stock: Number,
+});
 /* GET home page. */
 router.get("/", function (req, res, next) {
-  res.render("index", navBar);
+  res.render("index");
 });
 
 
@@ -37,8 +30,10 @@ router.get("/categories", async function (req, res) {
   const collectionData = await mongoose.connection
     .useDb("Categories")
     .listCollections();
-    console.log(collectionData)
-  res.render("categories", { navBar, collections: collectionData});
+
+  
+
+  res.render("categories", { collections: collectionData});
 });
 //Route to Create form page
 router.get("/categories/create", async function (req, res) {
@@ -51,7 +46,9 @@ router.post("/createCategories", async function (req, res) {
     .useDb("Categories")
     .listCollections();
   let findData = categoryData.find((name) => name.name === categoryName);
+  //IMAGE STUFF?
   if(!findData){
+
     const category = await mongoose.connection.useDb("Categories").createCollection(categoryName);
      
        
@@ -68,6 +65,8 @@ router.get("/categories/:id", async function (req, res) {
     .collection(id)
     .find()
     .toArray();
+    console.log(categoryData)
+    console.log(id)
   //do some filtering for the id later and pass it
   res.render("category", { categoryData, collection: id });
 });
@@ -112,15 +111,21 @@ router.get('/items/create',async function(req,res){
   res.render("createItem",{categories})
 })
 router.post("/createItem",async function(req,res){
+  //CREATE SCHEMA OR USE IT HERE 
  
-  await mongoose.connection.useDb("Categories").collection(req.body.categoryNames).insertOne({
-    name:req.body.itemName,
-    description:req.body.itemDescription,
-    category:req.body.categoryNames,
-    image:req.body.image,
-    price:req.body.price,
-    stock:req.body.stock
-  })
+ const newItem = mongoose.connection.useDb("Categories").model(req.body.categoryNames, itemSchema,req.body.categoryNames);
+
+ const newItemInstance = new newItem({
+   name: req.body.itemName,
+   description: req.body.itemDescription,
+   category: req.body.categoryNames,
+   image: req.body.image,
+   price: req.body.price,
+   stock: req.body.stock,
+ });
+
+ // Save the newly created item to the database
+ await newItemInstance.save();
   res.redirect(`/categories/${req.body.categoryNames}`);
 });
 

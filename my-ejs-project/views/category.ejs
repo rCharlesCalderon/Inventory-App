@@ -5,25 +5,33 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-   
-      <div class="temp-styling">  
-  <h1> <%= collection %></h1>
- <a href="/items/create"> <button type="submit">Add document/ITEM</button> </a>
-  
- 
-    <% categoryData.forEach((obj) => { %>
+  <div class="home"> 
+ <%- include('header.ejs') %>
+  <a href="/items/create"> <button type="submit">Add document/ITEM</button> </a>
+    <div class="category-container">
+      <div class="category-navbar">
+        <%=collection%> <img src="/images/edit-text.png" class="category-nav-img"> <img src="/images/trash (1).png" class="category-nav-img">
+      </div>
       
-        <div class="item-card"> 
-        <p><a href="/item/<%=collection %>/<%= obj._id %>/">  <%= obj.name %> </a></p>
-
-     <p> <a><%= obj.description %> </a></p>
-     <p><a> <%= obj.category %> </a></p> 
-     </div>
+      <div class="item-categories">
+    <% categoryData.forEach((obj) => { %>
+  <div class="item">
+    <% if (obj.url) { %>
+      
+       <img src="<%= obj.url %>" class="item-img">
+    <% } else { %>
+     <img src="/images/default.png" class="item-img">
+    <% } %>
+    
+  </div>
 <% }) %>
+      </div>
+    </div>
 
-</div>
-   
+
+  </div>
+  
+
+
   </body>
 </html>
-
- 

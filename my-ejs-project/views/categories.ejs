@@ -5,27 +5,41 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <header> 
-      <ul>
-        <li><a href="/"><%= navBar.home %> </a></li>
-        <li><a href="/categories"> <%= navBar.categories %></a> </li>
-          <li><a href="/items"> <%= navBar.items %> </a></li>
-      
-      </ul>
-    </header>
-    <div class="category-container">
-        <div class="add-categories">
-            All Categories <a href="/categories/create"><button class="add-category">+</button></a>
-        
-        
-        
-        </div>
-    <% collections.forEach((obj) => { %>
-    <p><a href="/categories/<%= obj.name %>"> <%= obj.name %></a></p>
-<% }) %>
+    <div class="home"> 
+   <%- include('header.ejs') %>
+  <div class="categories-container">
+    
+   <a href="/categories/create" class="add-category">  <img src="/images/RP_icon.webp" class="rp-img"> Add Category + </a>
 
 
-    </div>
-   
+
+
+
+
+  <div class="categories">
+    <% collections.forEach((obj)=>{ %>
+            <div class="collectionCard"><img src="/images/icons8-riot-games-48.png"><a href="/categories/<%=obj.name %>"> <%= obj.name %> </a></div>
+   <% }) %>
+  </div>
+
+
+
+
+
+
+
+
+
+  </div>
+
+
+
+
+
+ 
+
+
+    
+   </div>
   </body>
 </html>
