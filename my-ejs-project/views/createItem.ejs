@@ -5,9 +5,10 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
- <h1>CREATE ITEM FOR CATEGORY SECTION</h1>
-
- <form method="post" action="/createItem">
+    <div class="home"> 
+ <%- include('header.ejs') %>
+<!--Multer suggests adding enctype, delete if breaks-->
+ <form method="post" action="/createItem" enctype="multipart/form-data"> 
     <label for="itemName">Item Name</label>
     <input type="text" name="itemName">
      <label for="itemDescription">Item Description</label>
@@ -22,13 +23,13 @@
        
      </select>
       <label for = "image">Upload Image</label>
-     <input type="file" name="image" accept=".jpg, .jpeg, .png">
+     <input  type="file" name="itemImage" id="Itemimage" accept=".jpg, .jpeg, .png">
      <label for="price">Price</label>
      <input type="number" name="price">
      <label for="stock">Stock</label>
       <input type="number" name="stock">
       <button type="submit">Submit</button>
  </form>
-
+</div>
   </body>
 </html>

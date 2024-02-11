@@ -5,11 +5,16 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1>CREATE FORM </h1>
-   <form method="POST" action="/createCategories"> 
-    <input type="test" name="name">
-    <button type="submit"></button>
+    <div class="home">
+       <%- include('header.ejs') %>
+      <form method="POST" action="/createCategories" class="form"> 
+      <img src="/images/002_RG_2021_FULL_LOCKUP_RED.png" class="riot-img">
+      <h3 class="category-name">Category Name</h2>
+    <input type="text" name="name" class="category-input-name" placeholder="Enter Name">
+    <button type="submit" class="category-submit"><img src="/images/right-arrow.png" class="submit-arrow"></button>
    </form>
+    </div>
+    
    
   </body>
 </html>

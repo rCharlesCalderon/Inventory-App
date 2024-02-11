@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+     <%- include('header.ejs') %>
+
+        <div class="home">  
+            <h1>UPDATE CATEGORY NAME</h1>
+            <form method="post" action="updateCategoryName?collectionName=<%=collectionName%>">
+                <input type="text" placeholder="<%=collectionName%>" name="updateCategoryInput">
+                <button type="submit">+</button>
+            </form>
+        </div>
+ <script>
+
+ </script>
+
+</html>

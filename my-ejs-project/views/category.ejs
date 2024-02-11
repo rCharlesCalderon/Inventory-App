@@ -7,23 +7,45 @@
   <body>
   <div class="home"> 
  <%- include('header.ejs') %>
-  <a href="/items/create"> <button type="submit">Add document/ITEM</button> </a>
     <div class="category-container">
       <div class="category-navbar">
-        <%=collection%> <img src="/images/edit-text.png" class="category-nav-img"> <img src="/images/trash (1).png" class="category-nav-img">
+        <%=collection%> 
+     
+         <a href="/items/create"><button type="submit" class="item-add">+</button> </a>
+        
+
+        <a href="/updateCategory?collection=<%=collection%>">
+        <img src="/images/edit-text.png" class="category-nav-img">
+        </a>
+        
+        
+        <form method="post" action="/deleteCategory?collection=<%=collection%>">
+           <button type="submit"> <img src="/images/trash (1).png" class="category-nav-img"> </button>
+        </form>
+       
       </div>
       
       <div class="item-categories">
     <% categoryData.forEach((obj) => { %>
-  <div class="item">
-    <% if (obj.url) { %>
+<a class="item" href="/item/<%=collection %>/<%= obj._id %>">
+  
+    <% if (obj.image) { %>
       
-       <img src="<%= obj.url %>" class="item-img">
+      <img src="/uploads/<%= obj.image %>" class="item-img">
     <% } else { %>
      <img src="/images/default.png" class="item-img">
     <% } %>
+
+    
+    <div class="item-info"> 
+    <p class="item-name"><%=obj.name%></p>
+     <p class="item-price"><img src="/images/BE_icon.webp" class="BE-icon"><%=obj.price%></p>
+      <p class="item-stock">Only <%=obj.stock%> left in stock</p>
+     
+     
     
   </div>
+  </a>
 <% }) %>
       </div>
     </div>

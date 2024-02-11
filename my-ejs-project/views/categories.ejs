@@ -9,8 +9,9 @@
    <%- include('header.ejs') %>
   <div class="categories-container">
     
-   <a href="/categories/create" class="add-category">  <img src="/images/RP_icon.webp" class="rp-img"> Add Category + </a>
-
+    <div class="add-category">
+     <a href="/categories/create" class="add-category"> <button class="add-category-btn">Add Category</button></a>
+    </div>
 
 
 
@@ -18,7 +19,7 @@
 
   <div class="categories">
     <% collections.forEach((obj)=>{ %>
-            <div class="collectionCard"><img src="/images/icons8-riot-games-48.png"><a href="/categories/<%=obj.name %>"> <%= obj.name %> </a></div>
+            <div class="collectionCard"><img src="/images/icons8-kite-shape-30.png" class="kite-icon"><a href="/categories/<%=obj.name %>"> <%= obj.name %> </a></div>
    <% }) %>
   </div>
 
