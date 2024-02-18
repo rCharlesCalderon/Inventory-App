@@ -211,18 +211,23 @@ color: #CDFAFA;
   font-size: 26px;
   color: white;
   font-family: league;
-  gap: 5px;
+  gap: 20px;
+  
 }
 
 .category-nav-img{
   height: 30px;
+  background: transparent;
+  border: none;
 }
 
 .item-categories{
   display: flex;
   flex-wrap: wrap;
   height: 100%;
-  gap: 15px;
+  width: 100%;
+  column-gap: 15px;
+
 }
 
 .item{
@@ -327,7 +332,7 @@ font-weight: 700;
   flex-direction: column;
   gap: 3px;
   height: 100%;
-  border-radius: 0px 0px 15px 15px;
+  border-radius: 0px 0px 12px 12px;
   color: black;
   font-size: 20px;
   font-family: league;
@@ -350,9 +355,58 @@ font-weight: 700;
   display: flex;
   justify-content: center;
   align-items: center;
- height: 35px;
- width: 35px;
+ height: 10px;
+ width: 10px;
 
 }
 
+.individual-item-container{
+  display: flex;
+  flex-direction: column;
+  border: 1px red solid;
+  height: 50%;
+  width: 18%;
+}
 
+.items-header{
+  font-family: league;
+  font-size: 40px;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.createItem-container {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+width: 100%;
+ 
+}
+
+.createItem {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  gap: 9px;
+  height: 70%;
+}
+
+label{
+  font-family: league;
+  font-size: 20px;
+  color: white;
+}
+input{
+  height: 30px;
+}
+
+.createItem button{
+  height: 40px;
+  color: cyan;
+  width: 70%;
+  margin-left: 16%;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: league;
+}

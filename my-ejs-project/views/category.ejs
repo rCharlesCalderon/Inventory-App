@@ -11,16 +11,16 @@
       <div class="category-navbar">
         <%=collection%> 
      
-         <a href="/items/create"><button type="submit" class="item-add">+</button> </a>
+         <a href="/items/create" class="category-nav-img"><img src="/images/add.png" class="category-nav-img"></a>
         
 
-        <a href="/updateCategory?collection=<%=collection%>">
+        <a href="/updateCategory?collection=<%=collection%>" class="category-nav-img">
         <img src="/images/edit-text.png" class="category-nav-img">
         </a>
         
         
-        <form method="post" action="/deleteCategory?collection=<%=collection%>">
-           <button type="submit"> <img src="/images/trash (1).png" class="category-nav-img"> </button>
+        <form method="post" action="/deleteCategory?collection=<%=collection%>" class="category-nav-img">
+           <button type="submit" class="category-nav-img"> <img src="/images/trash (1).png" class="category-nav-img"> </button>
         </form>
        
       </div>

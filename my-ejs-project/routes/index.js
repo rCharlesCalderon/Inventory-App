@@ -119,7 +119,7 @@ router.post("/createItem", upload.single('itemImage'),async function(req,res){
    name: req.body.itemName,
    description: req.body.itemDescription,
    category: req.body.categoryNames,
-   image: req.file.filename,
+   image: req.file ? req.file.filename : '',
    price: req.body.price,
    stock: req.body.stock,
  });
@@ -135,11 +135,15 @@ router.get("/updateItem/:collection/:id", async function (req, res) {
  const collectionList = await db.listCollections()
  res.render("updateItem",{data,collectionList});
 });
+//WHAT IS BREAKING THIS?
+//Category Changes need to figure out
+router.post("/update", async function (req, res) {
+  //make function and coditonally render if something changes?
+  const documentId = req.query.id;
+  const collectionName = req.query.collection;
+ 
+  res.redirect('/')
+});
 
-router.post('/update',async function(req,res){
- const documentId = req.query.id;
- const collectionName = req.query.collection;
- let data = await db.collection(collectionName)
 
-})
 module.exports = router;

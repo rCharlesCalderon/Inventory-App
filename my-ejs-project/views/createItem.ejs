@@ -8,12 +8,14 @@
     <div class="home"> 
  <%- include('header.ejs') %>
 <!--Multer suggests adding enctype, delete if breaks-->
- <form method="post" action="/createItem" enctype="multipart/form-data"> 
-    <label for="itemName">Item Name</label>
+<h1>Create Item</h1>
+<div class="createItem-container"> 
+ <form method="post" action="/createItem" enctype="multipart/form-data" class="createItem"> 
+    <label for="itemName" class="label">Item Name</label>
     <input type="text" name="itemName">
      <label for="itemDescription">Item Description</label>
     <input type="text" name="itemDescription">
-     <label for = "categoryNames"></label>
+     <label for = "categoryNames">Category</label>
      <select name="categoryNames"> 
         <option></option>
          <% categories.forEach((obj)=>{ %>
@@ -30,6 +32,7 @@
       <input type="number" name="stock">
       <button type="submit">Submit</button>
  </form>
+ </div>
 </div>
   </body>
 </html>

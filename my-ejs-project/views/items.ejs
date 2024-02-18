@@ -5,15 +5,34 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
+    <div class="home"> 
+    
+      <%- include('header.ejs') %>
+      <h1 class="items-header">All Items</h1>
+   <div class="item-categories">
+    <% documentData.forEach((obj) => { %>
+<a class="item" >
+  
+    <% if (obj.image) { %>
+      
+      <img src="/uploads/<%= obj.image %>" class="item-img">
+    <% } else { %>
+     <img src="/images/default.png" class="item-img">
+    <% } %>
 
-       
+    
+    <div class="item-info"> 
+    <p class="item-name"><%=obj.name%></p>
+     <p class="item-price"><img src="/images/BE_icon.webp" class="BE-icon"><%=obj.price%></p>
+      <p class="item-stock">Only <%=obj.stock%> left in stock</p>
      
-    <h1>ITEMSs</h1>
-  <% documentData.forEach((obj) => { %>
-    <p> <%= obj.name %></p>
+     
+    
+  </div>
+  </a>
 <% }) %>
 
-      
-   
+      </div>
+      </div>
   </body>
 </html>

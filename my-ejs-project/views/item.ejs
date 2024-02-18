@@ -5,8 +5,12 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-
-      <a href="/updateItem/<%=collection%>/<%=id %>"><button>EDIT BUTTON</button></a>
+<div class="home">
+  
+   <%- include('header.ejs') %>
+<div class="individual-item-container">   
+   <h1><%=  categoryData.name     %></h1>
+    <a href="/updateItem/<%=collection%>/<%=id %>"><button>EDIT BUTTON</button></a>
    
      
  
@@ -14,8 +18,10 @@
   <button class="test" type="submit" >TRASH</button>
 </form>
 
-    <h1><%=  categoryData.name     %></h1>
-      
+   
+</div>
+  
+      </div>
    
   </body>
  <script>
