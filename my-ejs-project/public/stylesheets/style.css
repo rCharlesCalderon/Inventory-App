@@ -362,12 +362,61 @@ font-weight: 700;
 
 .individual-item-container{
   display: flex;
-  flex-direction: column;
-  border: 1px red solid;
+  margin-top: 20px;
   height: 50%;
-  width: 18%;
+  width: 100%;
+  column-gap: 25px;
+  
 }
 
+.item-pic-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 27%;
+  
+}
+
+.item-details-title{
+  display: flex;
+  font-size: 25px;
+  color: white;
+  gap: 10px;
+}
+
+.item-details-button{
+  border: none;
+  background: none;
+}
+.item-detail-style {
+  color: white;
+  font-size: 20px;
+}
+
+.item-detail-style:last-child{
+  color: red;
+}
+
+
+.item-details{
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  height: 100%;
+  width: 60%;
+}
+
+.item-details-img{
+  height: 27px;
+  background: none;
+  border: none;
+}
+
+.item-pic{
+  height: 100%;
+  width: 100%;
+}
 .items-header{
   font-family: league;
   font-size: 40px;

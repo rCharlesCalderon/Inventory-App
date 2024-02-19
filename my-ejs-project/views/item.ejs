@@ -9,15 +9,27 @@
   
    <%- include('header.ejs') %>
 <div class="individual-item-container">   
-   <h1><%=  categoryData.name     %></h1>
-    <a href="/updateItem/<%=collection%>/<%=id %>"><button>EDIT BUTTON</button></a>
+  <div class="item-pic-container"> <img src="/uploads/<%=categoryData.image%>" class="item-pic"> </div>
+  <div class="item-details">
+    <div class="item-details-title"> 
+    <p><%=categoryData.name%></p>
+    
+    <a href="/updateItem/<%=collection%>/<%=id %>"><img src="/images/edit-text.png" class="item-details-img"></a>
    
      
  
    <form action="/deleteItem?collection=<%=collection%>&id=<%=id%>" method="post">
-  <button class="test" type="submit" >TRASH</button>
+  <button class="item-details-button" type="submit" ><img src="/images/trash (1).png" class="item-details-img"></button>
 </form>
 
+
+</div>
+<hr>
+<p class="item-detail-style"><%=categoryData.description%></p>
+<p class="item-detail-style"><%=categoryData.category%></p>
+<p class="item-detail-style"><%=categoryData.price%></p>
+<p class="item-detail-style">Number in stock: <%=categoryData.stock%></p>
+  </div>
    
 </div>
   
@@ -29,3 +41,12 @@
  </script>
 
 </html>
+
+ <h1><%=  categoryData.name     %></h1>
+    <a href="/updateItem/<%=collection%>/<%=id %>"><button>EDIT BUTTON</button></a>
+   
+     
+ 
+   <form action="/deleteItem?collection=<%=collection%>&id=<%=id%>" method="post">
+  <button class="test" type="submit" >TRASH</button>
+</form>

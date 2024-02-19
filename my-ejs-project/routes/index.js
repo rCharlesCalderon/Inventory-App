@@ -95,6 +95,7 @@ router.get("/item/:collection/:id",async function (req, res) {
   const collection = req.params.collection
   const id = req.params.id
   const categoryData = await db.collection(collection).findOne({_id:new ObjectId(id)})
+  console.log(categoryData)
   res.render("item", { categoryData, id,collection});
 })
 //Delete an Document/Item
