@@ -11,7 +11,7 @@
       <h1 class="items-header">All Items</h1>
    <div class="item-categories">
     <% documentData.forEach((obj) => { %>
-<a class="item" >
+<a class="item" href="/item/<%=obj.category%>/<%=obj._id%>">
   
     <% if (obj.image) { %>
       

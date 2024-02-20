@@ -14,12 +14,12 @@
     <div class="item-details-title"> 
     <p><%=categoryData.name%></p>
     
-    <a href="/updateItem/<%=collection%>/<%=id %>"><img src="/images/edit-text.png" class="item-details-img"></a>
+    <a href="/updateItem/<%=collection%>/<%=id %>" class="item-details-img"><img src="/images/edit.png" class="item-details-img"></a>
    
      
  
    <form action="/deleteItem?collection=<%=collection%>&id=<%=id%>" method="post">
-  <button class="item-details-button" type="submit" ><img src="/images/trash (1).png" class="item-details-img"></button>
+  <button class="item-details-button" type="submit" ><img src="/images/recycle-bin.png" class="item-details-img"></button>
 </form>
 
 

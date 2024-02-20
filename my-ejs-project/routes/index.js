@@ -5,7 +5,6 @@ const { Schema } = mongoose;
 const {ObjectId} = require("mongodb");
 const itemSchema = require("../controller/itemSchema.js")
 const multer = require("multer");
-const { func } = require("prop-types");
 const upload = multer({ dest: "uploads/" });
 
 mongoose.connect("mongodb+srv://Rubcal123:Rubcal123@inventory.smc01ik.mongodb.net/?retryWrites=true&w=majority");
@@ -142,8 +141,22 @@ router.post("/update", async function (req, res) {
   //make function and coditonally render if something changes?
   const documentId = req.query.id;
   const collectionName = req.query.collection;
+  const filter = { _id: new ObjectId(documentId) };
+   const updateDoc = {
+   $set: {
+     name: req.body.itemName,
+     description: req.body.itemDescription,
+     price: req.body.price,
+     stock: req.body.stock,
+    }
+   };
+  //if nothing changes stop the crash
+  
  
-  res.redirect('/')
+
+ 
+  await db.collection(collectionName).updateOne(filter, updateDoc)
+   res.redirect(`/item/${collectionName}/${documentId}`);
 });
 
 
