@@ -12,9 +12,9 @@
 <div class="createItem-container"> 
  <form method="post" action="/createItem" enctype="multipart/form-data" class="createItem"> 
     <label for="itemName" class="label">Item Name</label>
-    <input type="text" name="itemName">
+    <input type="text" name="itemName" required>
      <label for="itemDescription">Item Description</label>
-    <input type="text" name="itemDescription">
+    <input type="text" name="itemDescription" required>
      <label for = "categoryNames">Category</label>
      <select name="categoryNames"> 
         <option></option>
@@ -25,11 +25,11 @@
        
      </select>
       <label for = "image">Upload Image</label>
-     <input  type="file" name="itemImage" id="Itemimage" accept=".jpg, .jpeg, .png">
+     <input  type="file" name="itemImage" id="Itemimage" accept=".jpg, .jpeg, .png" >
      <label for="price">Price</label>
-     <input type="number" name="price">
+     <input type="number" name="price" required>
      <label for="stock">Stock</label>
-      <input type="number" name="stock">
+      <input type="number" name="stock" required>
       <button type="submit">Submit</button>
  </form>
  </div>
